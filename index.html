@@ -21,6 +21,8 @@
   <!-- For syntax highlighting -->
   <link rel="stylesheet" href="lib/css/zenburn.css">
 
+  <link rel="stylesheet" href="css/ionicons.min.css">
+
   <!-- If the query includes 'print-pdf', include the PDF print sheet -->
   <script>
     if (window.location.search.match(/print-pdf/gi)) {
@@ -32,9 +34,9 @@
     }
   </script>
 
-  <script src="https://cdn.firebase.com/libs/geofire/3.0.2/geofire.min.js"></script>
-  <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+  <script src="https://cdn.firebase.com/js/client/1.0.24/firebase.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 
   <!--[if lt IE 9]>
   <script src="lib/js/html5shiv.js"></script>
@@ -78,132 +80,246 @@
   <div class="slides">
 
     <section>
-      <h2>How the IoT is Changing the way we Play</h2>
+      <h2>How the IoT will changing the way we play</h2>
       <br/>
       <br/>
 
       <br/>
 
       <p>
-        <small>Created by <a href="https://mimming.com">Jenny Tong</a> / <a href="https://mimming.com">mimming.com</a></small>
+        <small>Created by <a href="https://mimming.com">Jenny Tong</a> / <a href="https://mimming.com">mimming.com</a> / <a href="https://twitter.com/baconatedgeek">@BaconatedGeek</a></small>
       </p>
     </section>
 
 
+    <section>
+        <h2>Hi! I'm Jenny.</h2>
+
+        <p>I'm a Developer Advocate at &nbsp;<img style="margin-bottom: -0.2em; height: 1.2em;" src="img/firebase-logo.png"></p>
+        <br/>
+
+        <p>I like to help people cause trouble with code.</p>
+    </section>
+
+    <section>
+        <h2><strike>Agenda</strike> <span class="fragment">Haiku</span></h2>
+
+        <div class="fragment">
+          <p>What is this play thing?</p>
+          <p>Play loves technology too</p>
+          <p>A demo: robots fight</p>
+        </div>
+      <br/><br/>
+        <div class="fragment">
+          <h3>Bonus item</h3>
+          <p>Jenny speculates</p>
+        </div>
+    </section>
+
     <section data-markdown>
       <script type="text/template">
-        # Me
-
-        I'm Jenny. I like to help people cause trouble with code.
-
-        I hack around on stuff. This new IoT thing is pretty cool.
+        # Bears play
+        ![bears](img/bears-playing.jpg)
       </script>
     </section>
 
     <section data-markdown>
       <script type="text/template">
-        # Agenda
-
-        - What is play
-        - What is the Internet of Things
-        - How technology has changed play before
-        - IoT's influence
-        - Proof (Demos and code)
+        # People play
+        ![beer](img/drink-beer.jpg)
       </script>
     </section>
 
     <section data-markdown>
       <script type="text/template">
-        # What is play
-        ## Fun stuff that serves no direct productive purpose
+        # People play
+        ![beer](img/warhammer.jpg)
+      </script>
+    </section>
 
+    <section>
+        <h2>Focus</h2>
+      <ul>
+        <li class="fragment">A story about a sport: fencing</li>
+        <li class="fragment">Games we can play (safely) with <i style="font-size: 200%;" class="icon ion-beer"></i></li>
+      </ul>
+    </section>
 
-        OMG that's broad. Examples:
+    <section>
+      <h2>Why sports?</h2>
+      <img src="img/mine_canary.jpg">
+    </section>
 
-        - Sports
-        - Music
-        - Party games
-        - Video games
-        - etc...
+    <section>
+      <h2>Sports are serious play</h2>
+      <ul>
+        <li>Athletes are always looking for that edge</li>
+        <li>Stay ahead of competitors</li>
+        <li>Adopt early</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Épée</h2>
+      <img src="img/epee-fencing.jpg">
+    </section>
+
+    <section>
+      <h2>Electric épée</h2>
+      <img src="img/electric-epee.jpg">
+    </section>
+
+    <section>
+      <h2>Épée flick</h2>
+      <img src="img/flick-fencing.jpg">
+    </section>
+
+    <section>
+      <h2>Olympic electric épée</h2>
+      <img src="img/1936-fencing.jpg">
+    </section>
+
+    <section>
+      <h2>The Internet of Things</h2>
+      <p>An overloaded marketing buzzword</p>
+      <br/>
+      <div class="fragment">
+        <h3>For this talk</h3>
+        <ul>
+          <li>Non-traditional computing devices that are Internet aware</li>
+          <li>Something that's been going on for years</li>
+        </ul>
+      </div>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+        ## IoT's playful potential
+
+        ![network effect](img/network.png)
       </script>
     </section>
 
     <section data-markdown>
       <script type="text/template">
-        # What is the IoT
-        ## An overloaded marketing buzzword
+        ## IoT's playful potential
 
-        a.k.a: non-traditional computing devices that are Internet aware
+        <img src="img/stack.png">
       </script>
     </section>
 
-    <section data-markdown>
-      <script type="text/template">
-        # IoT Example
-        ## Smartphones
-
-        - Like the tricorder from Star Trek
-        - Suddenly we always have all of the worlds information at our fingertips
-        - Arguments about trivia at bars will never be the same again.
-      </script>
+    <script>
+      $( document ).ready(function() {
+        var testFirebase = new Firebase("https://test-firebase-please-ignore.firebaseio.com/");
+        testFirebase.child("robots/red").on("value", function(snap) {
+          $("#robot-score-red").text(snap.val());
+        });
+        testFirebase.child("robots/blue").on("value", function(snap) {
+          $("#robot-score-blue").text(snap.val());
+        });
+        $("#robot-score-reset").click(function() {
+          testFirebase.child("robots/blue").set(0);
+          testFirebase.child("robots/red").set(0);
+        });
+      });
+    </script>
+    <section>
+        <h1>Robots. Fight!</h1>
+<br/>
+<table style="width: 100%;">
+  <thead><tr><th style="text-align: center;"><h2 style="color: red;">Red</h2></th><th style="text-align: center;"><h2 style="color: blue;" >Blue</h2></th></tr></thead>
+  <tbody><tr><td style="text-align: center;"><h2 style="color: red;" id="robot-score-red">?</h2></td><td  style="text-align: center;" ><h2  style="color: blue;" id="robot-score-blue">?</h2></td></tr></tbody>
+</table>
+      <br/>
+      <br/>
+      <button id="robot-score-reset" style="width: 300px; height: 75px; font-size: 35px;">Reset score</button>
     </section>
-
-    <section data-markdown>
-      <script type="text/template">
-        # Tech and Play
-        ## Sports - Fencing
-
-        - Foil was difficult to judge
-        - Easy to automate with a circuit
-        - This changed officiating
-        - This impacted strategy
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-        # IoT and Play
-        ## What it changes
-
-        - Interconnectio
-      </script>
-    </section>
-
-
-
-
-
-
-
-
 
 
     <section>
-      <!-- make the QR code fill the whole thing -->
-      <iframe src="qr/index.svg#http://example.com" style="height: 2000px; width: 2000px;"></iframe>
+      <h2>Robots Fight Code</h2>
+      <h3>Hardware</h3>
+      <pre><code data-trim class="javascript" style="font-size: 22px;">
+var five = require("raspi-io");
+var Firebase = require("firebase");
+
+var board = new five.Board();
+var firebase = new Firebase("https://robots.firebaseio.com/robots");
+
+board.on("ready", function() {
+  red = new five.Button(24);
+  blue = new five.Button(26);
+
+  red.on("up", function () {
+    firebase.child("red").once("value", function(snap) {
+      firebase.child("red").set(snap.val()++);
+  });
+  ...
+});
+      </code></pre>
     </section>
 
+    <section>
+      <h2>Robots Fight Code</h2>
+      <h3>Slide</h3>
+      <pre><code data-trim class="javascript" style="font-size: 22px;">
+var firebase = new Firebase("https://robots.firebaseio.com/");
+
+firebase.child("robots/red").on("value", function(snap) {
+  $("#robot-score-red").text(snap.val());
+});
+firebase.child("robots/blue").on("value", function(snap) {
+  $("#robot-score-blue").text(snap.val());
+});
+$("#robot-score-reset").click(function() {
+  firebase.child("robots/blue").set(0);
+  firebase.child("robots/red").set(0);
+});
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Jenny Speculates</h2>
+      <p>Internet of Rock'em Sock'em Robots, so what?</p>
+    </section>
+
+    <section>
+      <h2>Successful game concepts, in real life</h2>
+      <img src="img/game-tutorial.png">
+    </section>
+
+    <section>
+      <h2>MMOLARPGS</h2>
+      <img src="img/ingress4.webp"> &nbsp;<img src="img/ingress2.webp"> &nbsp;<img src="img/ingress1.webp">
+    </section>
+
+    <section>
+      <h2>Children again playing outside</h2>
+      <img src="img/playing-outside.jpg">
+    </section>
+
+    <section>
+      <h2>Lego Mindstorms: the gateway robots</h2>
+      <img src="img/mindstorms-crab.png">
+    </section>
 
     <section>
       <!-- TODO -->
       <h1>THE END</h1>
       <br/>
-
-      <h3>Questions?</h3>
-      <br/><br/>
-      <h4>Slides</h4>
-
-      <p><a href="https://mimming.com/presos/synchronizing-state">https://mimming.com/presos/synchronizing-state</a></p>
       <br/>
-      <h4>Code</h4>
+      <br/>
+      <h4>These slides</h4>
 
-      <p>These slides: <a href="https://github.com/mimming/synchronizing-state">https://github.com/mimming/synchronizing-state/</a></p>
+      <p><a href="https://mimming.com/presos/how-iot-will-change-the-way-we-play">https://mimming.com/presos/how-iot-will-change-the-way-we-play</a></p>
+      <br/>
+      <h4>These slides' code</h4>
 
-      <p>Fruit detector: <a href="https://github.com/mimming/firebase-fruit-detector/">https://github.com/mimming/firebase-fruit-detector/</a></p>
+      <p><a href="https://github.com/mimming/how-iot-will-change-the-way-we-play">https://github.com/mimming/how-iot-will-change-the-way-we-play</a></p>
       <br/>
 
       <p>
-        <small>Created by <a href="https://mimming.com">Jenny Tong</a> / <a href="https://mimming.com">mimming.com</a></small>
+        <small>Created by <a href="https://mimming.com">Jenny Tong</a> / <a href="https://mimming.com">mimming.com</a> / <a href="https://twitter.com/baconatedgeek">@BaconatedGeek</a></small>
       </p>
 
     </section>
