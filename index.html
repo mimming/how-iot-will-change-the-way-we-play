@@ -80,7 +80,7 @@
   <div class="slides">
 
     <section>
-      <h2>How the IoT will changing the way we play</h2>
+      <h2>How the IoT will change the way we play</h2>
       <br/>
       <br/>
 
@@ -105,7 +105,7 @@
         <h2><strike>Agenda</strike> <span class="fragment">Haiku</span></h2>
 
         <div class="fragment">
-          <p>What is this play thing?</p>
+          <p>What is this play stuff?</p>
           <p>Play loves technology too</p>
           <p>A demo: robots fight</p>
         </div>
@@ -247,12 +247,12 @@ var board = new five.Board();
 var firebase = new Firebase("https://robots.firebaseio.com/robots");
 
 board.on("ready", function() {
-  red = new five.Button(24);
-  blue = new five.Button(26);
+  var red = new five.Button(24);
+  var blue = new five.Button(26);
 
   red.on("up", function () {
     firebase.child("red").once("value", function(snap) {
-      firebase.child("red").set(snap.val()++);
+      firebase.child("red").set(snap.val() + 1);
   });
   ...
 });
