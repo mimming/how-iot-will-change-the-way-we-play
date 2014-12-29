@@ -8,7 +8,7 @@ In this talk Jenny will discuss how technological advancement has changed the wa
 Slides live on [mimming.com](https://mimming.com/presos/how-iot-will-change-the-way-we-play/)
 
 ## Presented at
-- [The Monktoberfest 2014](http://http://monktoberfest.com/) - [slides' code](https://github.com/mimming/how-iot-will-change-the-way-we-play/releases/tag/monktoberfest14)
+- [The Monktoberfest 2014](http://http://monktoberfest.com/) - [slides](https://github.com/mimming/how-iot-will-change-the-way-we-play/releases/tag/monktoberfest14) - [video](https://www.youtube.com/watch?v=ef8hV7rTar0)
 
 ## Demos
 This presentation contains one demo: [Internet of Rock 'Em Sock 'Em ROBOTS](https://github.com/mimming/internet-of-rockem-sockem-robots)
